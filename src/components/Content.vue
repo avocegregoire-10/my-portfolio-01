@@ -432,6 +432,30 @@ onMounted(() => {
     top: 24rem;
     cursor: pointer;
   }
+   @media (max-width: 1024px) {
+    .modal-content {
+      max-width: 40%;
+      padding: 25px;
+    }
+
+    .close-btn {
+      font-size: 1.8rem;
+      top: 14rem;
+      right: 20rem;
+    }
+  }
+  @media (max-width: 1280px) {
+    .modal-content {
+      max-width: 40%;
+      padding: 25px;
+    }
+
+    .close-btn {
+      font-size: 1.8rem;
+      top: 20rem;
+      right: 25rem;
+    }
+  }
   @media (max-width: 768px) {
   .modal-content {
     max-width: 90%;
@@ -453,8 +477,8 @@ onMounted(() => {
 
   .close-btn {
     font-size: 1.5rem;
-    top: 5px;
-    right: 5px;
+    top: 22rem;
+    right: 2rem;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import heroImagePath from '../assets/images/Segla-G-1-removebg-preview.png'
 import profileImagePath from '../assets/images/Segla-2-removebg-preview.png'
-import cvUrl from '../assets/images/Gregoire_AVOCE_CV.pdf'
+import cvUrl from '../assets/images/CV_Grégoire_AVOCE_01.pdf'
 import certificatUrls from '../assets/images/experiences_proof.pdf'
 
 export const useProfileStore = defineStore('profile', {
