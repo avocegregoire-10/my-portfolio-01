@@ -80,7 +80,13 @@
   51%, 100% { border-color: #FFD700; }
 }
 
-.project-button, .btn {
+.project-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-button, .btn, .mission-btn {
   background: var(--accent); 
   color: white; 
   padding: 1rem 2rem; 
@@ -92,6 +98,10 @@
   transition: all 0.3s ease;
   display: inline-block;
   box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.mission-btn{
+  font-size: 15px;
 }
 
 .project-button:hover, .btn:hover {

@@ -21,6 +21,11 @@ const isSubmitting = ref(false)
 const formSubmitted = ref(false)
 const emailStatus = ref('')
 
+// Contrôle de l'affichage du modal
+const showMissionModal = ref(false)
+// Stocke les missions du projet cliqué
+const currentProjectMissions = ref([])
+
 // Visibilité des sections (pour les animations)
 const inView = reactive({
   about: false,
@@ -96,7 +101,13 @@ const projects = [
     description: 'Plateforme de présentation des services de la poste du Bénin',
     technologie : 'Laravel + Vue.js',
     image: lreLaposteImagePath,
-    url: 'https://lre.laposte.bj/'
+    url: 'https://lre.laposte.bj/',
+    missions: [
+      'Analyse et Conception',
+      'Développement de l\'API',
+      'Intégration de l\'API',
+      'Déploiement'
+    ]
   },
   {
     id: 'cua',
@@ -104,7 +115,12 @@ const projects = [
     description: 'Plateforme de gestion du Centre Universitaire Apostolique',
     technologie : 'Laravel + Vue.js',
     image: cuaImagePath,
-    url: 'https://cua.bj/'
+    url: 'https://cua.bj/',
+    missions: [
+      'Analyse et Conception',
+      'Développement de l\'API',
+      'Intégration de l\'API',
+    ]
   },
   {
     id: 'aquatechplateforme',
@@ -112,7 +128,13 @@ const projects = [
     description: 'Plateforme de présentation de AQUATECH BENIN et ses services',
     technologie : 'Laravel + Blade',
     image: aquatechImagePath,
-    url: 'https://aquatech-benin.com/'
+    url: 'https://aquatech-benin.com/',
+    missions: [
+      'Analyse et Conception de l’interface',
+      'Développement frontend et backend',
+      'Intégration responsive',
+      'Optimisation SEO'
+    ]
   },
   {
     id: 'aquatechmobile',
@@ -120,7 +142,12 @@ const projects = [
     description: 'Plateforme de présentation de l\'application mobile Aquatech',
     technologie : 'Laravel + Blade',
     image: aquatechMobileImagePath,
-    url: 'https://app.aquatech-benin.com/'
+    url: 'https://app.aquatech-benin.com/',
+    missions: [
+      'Analyse et Conception de l’interface',
+      'Développement frontend et backend',
+      'Intégration responsive',
+    ]
   },
   {
     id: 'jtek',
@@ -128,7 +155,12 @@ const projects = [
     description: 'Plateforme de présentation de JTEK SOLUTIONS et ses services',
     technologie : 'Laravel + Angular',
     image: jtekImagePath,
-    url: 'https://www.jtek-solutions.com/'
+    url: 'https://www.jtek-solutions.com/',
+    missions: [
+      'Refonte de l’interface',
+      'Intégration responsive',
+      'Réalisation de la vidéo de présentation avec canva'
+    ]
   },
   {
     id: 'afofma',
@@ -136,7 +168,12 @@ const projects = [
     description: 'Plateforme de gestion des centres professionnels AFOFMA',
     technologie : 'Laravel + Angular',
     image: afofmaimagePath,
-    url: 'https://afofma.jtek-solutions.com/login'
+    url: 'https://afofma.jtek-solutions.com/login',
+    missions: [
+      'Analyse et Conception',
+      'Modélisation UML',
+      'Implémentation des fonctionnalités gestion des notes et évaluations (API)',
+    ]
   }
 ]
 
@@ -241,6 +278,16 @@ const openProject = (url) => {
   window.open(url, '_blank');
 }
 
+const openMissionModal = (missions) => {
+  currentProjectMissions.value = missions;
+  showMissionModal.value = true;
+}
+
+const closeMissionModal = () => {
+  showMissionModal.value = false;
+  currentProjectMissions.value = [];
+}
+
 // Hook de montage du composant
 onMounted(() => {
   startTypingAnimation();
@@ -326,15 +373,63 @@ onMounted(() => {
         <div class="project-content">
           <h3>{{ project.title }}</h3>
           <p>{{ project.description }} - {{ project.technologie }}</p>
-          <a :href="project.url" target="_blank" class="project-button" @click.stop>
-            Consulter
-          </a>
+          <div class="project-actions">
+            <a :href="project.url" target="_blank" class="project-button" @click.stop>
+              Consulter
+            </a>
+            <button class="btn mission-btn" @click.stop="openMissionModal(project.missions)">Missions</button>
+          </div>
         </div>
       </article>
     </div>
   </section>
+
+  <!-- Modal Missions -->
+  <div v-if="showMissionModal" class="modal-overlay" @click="closeMissionModal">
+    <div class="modal-content" @click.stop>
+      <button class="close-btn" @click="closeMissionModal">&times;</button>
+      <h2>Missions accomplies</h2><br/>
+      <ul>
+        <li v-for="(mission, index) in currentProjectMissions" :key="index">
+          {{ mission }}
+        </li><br/>
+      </ul>
+      <hr>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
 
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .close-btn {
+    background: none; 
+    color: red;
+    border: none;
+    font-size: 2.5rem;
+    position: absolute;
+    right: 26rem;
+    top: 24rem;
+    cursor: pointer;
+  }
 </style>
