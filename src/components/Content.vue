@@ -66,20 +66,24 @@ const skills = [
     items: [
       { name: 'HTML5', level: 90 },
       { name: 'CSS3', level: 85 },
+      { name: 'BOOTSTRAP', level: 80 },
       { name: 'JavaScript', level: 80 },
       { name: 'Vue.js', level: 75 },
       { name: 'PHP', level: 70 },
-      { name: 'MySQL', level: 75 }
+      { name: 'Laravel', level: 75 },
+      { name: 'MySQL, POSTGRESQL', level: 75 }
     ]
   },
   {
     title: 'Compétences transversales',
     items: [
-      { name: 'Gestion de projets', level: 75 },
+      { name: 'Gestion de projets', level: 60 },
+      { name: 'Méthodologie Agile SCRUM', level: 85 },
       { name: 'Adaptabilité', level: 85 },
+      { name: 'Leadership entrepreneurial', level: 60 },
       { name: 'Résolution de problèmes', level: 80 },
       { name: 'Communication', level: 85 },
-      { name: 'Travail d\'équipe', level: 80 }
+      { name: 'Travail d\'équipe', level: 85 }
     ]
   }
 ]
@@ -90,6 +94,7 @@ const projects = [
     id: 'laposte',
     title: 'La Poste du Bénin',
     description: 'Plateforme de présentation des services de la poste du Bénin',
+    technologie : 'Laravel + Vue.js',
     image: lreLaposteImagePath,
     url: 'https://lre.laposte.bj/'
   },
@@ -97,6 +102,7 @@ const projects = [
     id: 'cua',
     title: 'Centre Universitaire Apostolique',
     description: 'Plateforme de gestion du Centre Universitaire Apostolique',
+    technologie : 'Laravel + Vue.js',
     image: cuaImagePath,
     url: 'https://cua.bj/'
   },
@@ -104,6 +110,7 @@ const projects = [
     id: 'aquatechplateforme',
     title: 'AQUATECH BENIN',
     description: 'Plateforme de présentation de AQUATECH BENIN et ses services',
+    technologie : 'Laravel + Blade',
     image: aquatechImagePath,
     url: 'https://aquatech-benin.com/'
   },
@@ -111,6 +118,7 @@ const projects = [
     id: 'aquatechmobile',
     title: 'Aquatech Mobile',
     description: 'Plateforme de présentation de l\'application mobile Aquatech',
+    technologie : 'Laravel + Blade',
     image: aquatechMobileImagePath,
     url: 'https://app.aquatech-benin.com/'
   },
@@ -118,6 +126,7 @@ const projects = [
     id: 'jtek',
     title: 'JTEK SOLUTIONS',
     description: 'Plateforme de présentation de JTEK SOLUTIONS et ses services',
+    technologie : 'Laravel + Angular',
     image: jtekImagePath,
     url: 'https://www.jtek-solutions.com/'
   },
@@ -125,6 +134,7 @@ const projects = [
     id: 'afofma',
     title: 'AFOFMA',
     description: 'Plateforme de gestion des centres professionnels AFOFMA',
+    technologie : 'Laravel + Angular',
     image: afofmaimagePath,
     url: 'https://afofma.jtek-solutions.com/login'
   }
@@ -306,7 +316,7 @@ onMounted(() => {
 
   <!-- Projects Section -->
   <section id="projects" class="projects section">
-    <h1 class="libelle-title">Expériences</h1>
+    <h1 class="libelle-title">Mes Projets</h1>
     <div class="project-grid fade-in" v-if="inView.projects">
       <article v-for="project in projects" 
                :key="project.id" 
@@ -315,7 +325,7 @@ onMounted(() => {
         <img :src="project.image" :alt="project.title">
         <div class="project-content">
           <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
+          <p>{{ project.description }} - {{ project.technologie }}</p>
           <a :href="project.url" target="_blank" class="project-button" @click.stop>
             Consulter
           </a>
