@@ -81,7 +81,7 @@ const scrollToSection = (href, sectionId) => {
 .logo { 
   font-size: 1.5rem; 
   font-weight: bold;
-  color: #FFD700;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   gap: 1rem;

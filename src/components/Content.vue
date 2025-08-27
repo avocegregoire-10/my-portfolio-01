@@ -3,7 +3,7 @@ import { ref, reactive, onMounted } from 'vue'
 import {useProfileStore} from '../stores/profile'
 import afofmaimagePath from '../assets/images/afofma-plateforme.png'
 import cuaImagePath from '../assets/images/cua-plateforme.png'
-import laposteImagePath from '../assets/images/poste-benin.png'
+import lreLaposteImagePath from '../assets/images/lrelaposte.png'
 import aquatechImagePath from '../assets/images/aquatech-benin.png'
 import aquatechMobileImagePath from '../assets/images/app-aquatech.png'
 import jtekImagePath from '../assets/images/jtek-solutions.png'
@@ -87,11 +87,11 @@ const skills = [
 // Projets
 const projects = [
   {
-    id: 'afofma',
-    title: 'AFOFMA',
-    description: 'Plateforme de gestion des centres professionnels AFOFMA',
-    image: afofmaimagePath,
-    url: 'https://afofma.jtek-solutions.com/login'
+    id: 'laposte',
+    title: 'La Poste du Bénin',
+    description: 'Plateforme de présentation des services de la poste du Bénin',
+    image: lreLaposteImagePath,
+    url: 'https://lre.laposte.bj/'
   },
   {
     id: 'cua',
@@ -99,13 +99,6 @@ const projects = [
     description: 'Plateforme de gestion du Centre Universitaire Apostolique',
     image: cuaImagePath,
     url: 'https://cua.bj/'
-  },
-  {
-    id: 'laposte',
-    title: 'La Poste du Bénin',
-    description: 'Plateforme de présentation des services de la poste du Bénin',
-    image: laposteImagePath,
-    url: 'https://laposte.bj/'
   },
   {
     id: 'aquatechplateforme',
@@ -127,6 +120,13 @@ const projects = [
     description: 'Plateforme de présentation de JTEK SOLUTIONS et ses services',
     image: jtekImagePath,
     url: 'https://www.jtek-solutions.com/'
+  },
+  {
+    id: 'afofma',
+    title: 'AFOFMA',
+    description: 'Plateforme de gestion des centres professionnels AFOFMA',
+    image: afofmaimagePath,
+    url: 'https://afofma.jtek-solutions.com/login'
   }
 ]
 
