@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import heroImagePath from '../assets/images/Segla-G-1-removebg-preview.png'
 import profileImagePath from '../assets/images/Segla-2-removebg-preview.png'
+import cvUrl from '../assets/images/Gregoire_AVOCE_CV.pdf'
+import certificatUrls from '../assets/images/certificats_attestations.pdf'
 
 export const useProfileStore = defineStore('profile', {
   state: () => ({
@@ -14,8 +16,8 @@ export const useProfileStore = defineStore('profile', {
         'Je suis Développeur Logiciel et Chargé de Projets Informatiques. Mon ambition est de contribuer à la promotion de l\'inclusion numérique des jeunes.',
         'Je m\'épanouis dans la transformation des idées en projets concrets avec les nouvelles technologies.'
       ],
-      cvUrl: 'images/Gregoire_AVOCE_CV.pdf',
-      certificatUrls: 'images/certificats_attestations.pdf'
+      cvUrl: cvUrl,
+      certificatUrls: certificatUrls
   }),
   actions: {
     updateProfile(newProfile) {
