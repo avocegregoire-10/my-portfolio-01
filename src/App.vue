@@ -113,7 +113,6 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  
 }
 
 .dev-image {

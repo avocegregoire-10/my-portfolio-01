@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import {useProfileStore} from '../stores/profile'
 import afofmaimagePath from '../assets/images/afofma-plateforme.png'
 import cuaImagePath from '../assets/images/cua-plateforme.png'
@@ -215,7 +215,6 @@ const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value;
 }
 
-// Navigation fluide
 const scrollToSection = (href, sectionId) => {
   mobileMenuOpen.value = false;
   activeSection.value = sectionId;
@@ -232,6 +231,8 @@ const scrollToSection = (href, sectionId) => {
 // Détection du scroll
 const setupScrollListener = () => {
   window.addEventListener('scroll', handleScroll);
+  // Appeler handleScroll au chargement pour définir la section active initiale
+  handleScroll();
 }
 
 const handleScroll = () => {
@@ -240,20 +241,26 @@ const handleScroll = () => {
 }
 
 const updateActiveSection = () => {
+  // Utilisez les mêmes IDs que dans votre navigation
   const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-  const scrollPosition = window.scrollY + 100;
+  const scrollPosition = window.scrollY + 100; // Offset pour l'activation
+  let currentSection = sections[0]; // Section par défaut
 
   for (const section of sections) {
     const element = document.getElementById(section);
     if (element) {
       const offsetTop = element.offsetTop;
-      const offsetBottom = offsetTop + element.offsetHeight;
-
-      if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-        activeSection.value = section;
-        break;
+      
+      // Si on a dépassé le début de cette section
+      if (scrollPosition >= offsetTop) {
+        currentSection = section;
       }
     }
+  }
+  
+  // Mettre à jour seulement si la section a changé
+  if (activeSection.value !== currentSection) {
+    activeSection.value = currentSection;
   }
 }
 
@@ -264,7 +271,7 @@ const checkSectionsInView = () => {
     const element = document.getElementById(section);
     if (element) {
       const rect = element.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
       
       if (isVisible && !inView[section]) {
         inView[section] = true;
@@ -294,6 +301,11 @@ onMounted(() => {
   setupScrollListener();
   checkSectionsInView();
 })
+// Hook de nettoyage du composant dans onUnmounted
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
 </script>
 
 <template>
